@@ -375,7 +375,7 @@ Github issue](https://github.com/norman/friendly_id/issues/185) for discussion.
     private :slug_generator
 
     def unset_slug_if_invalid
-      if errors.present? && attribute_changed?(friendly_id_config.query_field.to_s)
+      if errors.present? && will_save_change_to_attribute?(friendly_id_config.query_field.to_s)
         diff = changes_to_save[friendly_id_config.query_field]
         send "#{friendly_id_config.slug_column}=", diff.first
       end
